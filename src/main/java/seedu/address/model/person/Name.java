@@ -50,13 +50,17 @@ public class Name {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof Name)) {
             return false;
         }
 
         Name otherName = (Name) other;
-        return fullName.equals(otherName.fullName);
+
+        // Normalize both names before comparing:
+        String thisNormalized = fullName.trim().replaceAll("\\s+", " ");
+        String otherNormalized = otherName.fullName.trim().replaceAll("\\s+", " ");
+
+        return thisNormalized.equalsIgnoreCase(otherNormalized);
     }
 
     @Override
