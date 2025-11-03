@@ -8,7 +8,7 @@ If you type fast, often find yourself rushing to manage contacts, and want to sa
 
 Here’s how it helps you save time and stay on top of every relationship:
 
-* Add and update contacts instantly. Type, hit Enter, and move on. No endless clicking.
+* Add and update contacts instantly. Type, hit <kbd>Enter</kbd>, and move on. No endless clicking.
 * Track follow-ups effortlessly with built-in cadence and interaction logs.
 * See what matters using tag-based stats and sorting by next follow-up date.
 * Import and export seamlessly between CSV files.
@@ -24,25 +24,24 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
 ## Table of Contents
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Viewing help](#viewing-help--help)
-    - [Adding a person](#adding-a-person--add)
-    - [Deleting a person](#deleting-a-person--delete)
-    - [Editing a person](#editing-a-person--edit)
-    - [Listing all persons](#listing-all-persons--list)
-    - [Locating persons by name](#locating-persons-by-name--find)
-    - [Clearing all entries](#clearing-all-entries--clear)
-    - [Logging an interaction](#logging-an-interaction--log)
-    - [Exporting contacts](#exporting-contacts--export)
-    - [Importing contacts](#importing-contacts--import)
-    - [Viewing tag statistics](#viewing-tag-statistics--stats)
-    - [Sorting persons by next follow-up date](#sorting-persons-by-next-follow-up-date--sortfollowup)
+- [Command Summary](#command-summary)
+    - [Viewing help: help](#viewing-help--help)
+    - [Adding a person: add](#adding-a-person--add)
+    - [Deleting a person: delete](#deleting-a-person--delete)
+    - [Editing a person: edit](#editing-a-person--edit)
+    - [Listing all persons: list](#listing-all-persons--list)
+    - [Locating persons by name: find](#locating-persons-by-name--find)
+    - [Clearing all entries: clear](#clearing-all-entries--clear)
+    - [Logging an interaction: log](#logging-an-interaction--log)
+    - [Exporting contacts: export](#exporting-contacts--export)
+    - [Importing contacts: import](#importing-contacts--import)
+    - [Viewing tag statistics: stats](#viewing-tag-statistics--stats)
+    - [Sorting persons by next follow-up date: sortfollowup](#sorting-persons-by-next-follow-up-date--sortfollowup)
     - [Command history](#command-history)
-    - [Undoing latest command](#undoing-latest-command--undo)
-    - [Exiting the program](#exiting-the-program--exit)
+    - [Undoing latest command: undo](#undoing-latest-command--undo)
+    - [Exiting the program: exit](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
-- [Command Summary](#command-summary)
-- [Glossary](#glossary)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
 
@@ -52,24 +51,55 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
 ## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+   a. Search for Command Prompt in the Start Menu (if you are using Mac, open terminal by using Spotlight Search (Command + Space bar), then type "Terminal").
+   <p align="left">
+   <img src="images/commandPrompt.png" alt="Command Prompt" width="600"/>
+   </p>
+
+   b. Type `java -version` and press Enter. You should see an output similar to below.
+   
+   ```
+   >java version "17.0.16" 2025-07-15 LTS
+   >Java(TM) SE Runtime Environment (build 17.0.16+12-LTS-247)
+   >Java HotSpot(TM) 64-Bit Server VM (build 17.0.16+12-LTS-247, mixed mode, sharing)
+   ```
+    
+   c. Verify that the terminal displays java version "17" or higher (first line in the block above).
+    
+   d. If Java version displayed is not Java 17 or higher:
+
+   >**Windows users:** Ensure you have the JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationWindows.html).
+   > 
+   >**Mac users:** Ensure you have the JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W12-3a/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your MeshCRM.
+3. Make a new folder that you want to use as the _home folder_ for your MeshCRM. Copy the `.jar` file into that folder.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar meshcrm.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Open the command terminal as in step 1 and change directory into the folder you put your `.jar` files in.
+   <p align="left">
+   <img src="images/powerShell1.png" alt="Command Prompt" width="600"/>
+   </p>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+
+5. Use the java -jar MeshCRM.jar command and press <kbd>Enter</kbd> to launch the application.
+   <p align="left">
+   <img src="images/powerShell2.png" alt="Command Prompt" width="600"/>
+   </p>
+
+
+6. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   <p align="left">
+   <img src="images/Ui.png" alt="Ui" width="600"/>
+   </p>
+7. Type the command in the command box (indicated by the blue circle) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all contacts.
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`.
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
-    * `clear` : Deletes all contacts.
-    * `exit` : Exits the app.
+* `list` : Lists all contacts.
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/boss r/investor c/10` : Adds a contact named `John Doe`.
+* `delete 3` : Deletes the 3rd contact shown in the current list.
+* `clear` : Deletes all contacts.
+* `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -79,7 +109,7 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -101,22 +131,13 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
 
 ---
 
-### Viewing help : `help`
-
-Display a message showing how to access the help page.
-
-![help message](images/helpMessageNew.png)
-
-**Format:** `help`
-
----
 
 ## Command Summary
 
 | **Action** | **Format** | **Example** |
 |-------------|-------------|--------------|
 | **View Help** | `help` | — |
-| **Add Contact** | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]... r/ROLE [c/DAYS]` | `add n/James Ho p/22224444 e/jamesho@example.com a/123 Clementi Rd t/friend r/customer c/20` |
+| **Add Contact** | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]... r/ROLE [c/DAYS]` | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/boss r/investor c/10` |
 | **Delete Contact** | `delete INDEX` | `delete 3` |
 | **Edit Contact** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [r/ROLE] [c/DAYS]` | `edit 2 n/James Lee e/jameslee@example.com` |
 | **List All Contacts** | `list` | — |
@@ -133,6 +154,19 @@ Display a message showing how to access the help page.
 
 ---
 
+### Viewing help : `help`
+
+Opens a new window displaying the user guide link.
+The help window includes:
+* A clickable link to the User Guide
+* A Copy URL button to copy the user guide link
+
+<p align="left">
+<img src="images/helpMessageNewer.png" alt="Help Message" width="600"/>
+</p>
+
+---
+
 ### Adding a person : `add`
 
 Adds a new contact to the address book. Does not allow duplicate names.
@@ -141,18 +175,23 @@ Adds a new contact to the address book. Does not allow duplicate names.
 `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]... r/ROLE [c/DAYS]`
 
 **Details**
-* NAME, PHONE, and EMAIL are mandatory
-* ADDRESS, CADENCE, and TAG are optional.
+* NAME, PHONE, EMAIL, ADDRESS and ROLE are mandatory.
+* CADENCE and TAG are optional.
 * Multiple tags can be added by repeating the t/ prefix.
-* CADENCE accepts a number of days (e.g., c/7 means follow up every 7 days).
+* CADENCE accepts a positive number of days (e.g., c/7 means follow up every 7 days).
+* ROLE should be one of the following: Investor, Partner, Customer or Lead (case-insensitive).
+* NAME field with consecutive white-spaces will be reduced to 1 white-space.
 
 **Examples:**
 * add n/John Tan p/91234567 e/johntan@gmail.com a/123 Clementi Ave 3 t/client r/Investor c/14
-* add n/Alicia Koh p/98765432 e/aliciakoh@yahoo.com a/88 Serangoon Road t/partner t/highvalue r/Client c/30
-* add n/Daniel Lim p/81112222 e/daniel.lim@abc.com a/25 Ang Mo Kio Ave 10 r/Supplier
-* add n/Sophia Lee p/90001111 e/sophia.lee@gmail.com a/18 Bishan Street 12 t/lead r/Prospect c/10
-* add n/Bryan Ong p/92223333 e/bryan.ong@xyz.com a/450 Jurong West St 42 t/vip t/referral r/Customer
+* add n/Alicia Koh p/98765432 e/aliciakoh@yahoo.com a/88 Serangoon Road t/partner t/highvalue r/Customer c/30
+* add n/Daniel Lim p/81112222 e/daniel.lim@abc.com a/25 Ang Mo Kio Ave 10 r/Lead
+* add n/Sophia Lee p/90001111 e/sophia.lee@gmail.com a/18 Bishan Street 12 t/lead r/Partner c/10
+* add n/Bryan Ong p/92223333 e/bryan.ong@xyz.com a/450 Jurong West St 42 t/vip t/referral r/Investor
 
+<p align="left">
+<img src="../src/main/resources/images/addCommandExample.png" alt="Added John Tan as a contact" width="600"/>
+</p>
 > ⚠️ **Warning:** Duplicate names are not allowed.  
 > If a contact already exists with the same name, the command will be rejected.
 
@@ -168,11 +207,16 @@ Deletes the specified person from the address book.
 `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
+* Index must be a positive integer within the range of the displayed list.
 * The index refers to the position shown in the displayed list.
 
 **Examples:**
 * `list` followed by `delete 2`
 * `find Betsy` followed by `delete 1`
+
+<p align="left">
+<img src="../src/main/resources/images/deleteCommandExample.png" alt="Deleted Bernice Yu as a contact" width="600"/>
+</p>
 
 ---
 
@@ -197,6 +241,10 @@ Edits an existing contact’s details by index.
 * `edit 2 n/Betsy Crower t/`
 * `edit 3 a/123 Clementi Ave 3 r/Investor`
 * `edit 4 n/Alex Tan p/81234567 t/Friend t/Colleague c/14`
+
+<p align="left">
+<img src="../src/main/resources/images/editCommandExample.png" alt="Edited the first person's role to Customer and cadence to 4 days" width="600"/>
+</p>
 
 ---
 
@@ -223,6 +271,10 @@ Shows the full contact list.
 * `l`
   Displays the complete list of contacts (abbreviation).
 
+<p align="left">
+<img src="../src/main/resources/images/listCommandExample.png" alt="Displays list of contacts" width="600"/>
+</p>
+
 ---
 
 ### Locating persons by name : `find`
@@ -243,9 +295,14 @@ Finds persons whose names contain any of the given keyword(s).
 * Multiple keywords will return all persons matching any of the keywords.
 
 **Examples:**
-* `find john`
-* `find Nab Au`
-  ![result for 'find Nab Au'](images/findNabAuResult.png)
+* `find irfan`
+<p align="left">
+<img src="../src/main/resources/images/findCommandExample1.png" alt="Result for find irfan" width="600"/>
+</p>
+* `find li`
+<p align="left">
+<img src="../src/main/resources/images/findCommandExample2.png" alt="Result for find li" width="600"/>
+</p>
 
 ---
 
@@ -255,6 +312,9 @@ Clears all entries from the address book.
 
 **Format:** `clear`
 
+<p align="left">
+<img src="../src/main/resources/images/clearCommandExample.png" alt="Clear" width="600"/>
+</p>
 ---
 
 ### Logging an interaction : `log`
@@ -296,11 +356,15 @@ Adds an interaction (call / email / meeting / note) to a person’s history.
   Adds an **email** interaction for the 1st person
   *(email replaces call because the last `i/` wins).*
 
+<p align="left">
+<img src="../src/main/resources/images/logCommandExample.png" alt="Logged a call with the first person" width="600"/>
+</p>
+
 ---
 
 ### Exporting contacts : `export`
 
-Exports the current or filtered contact list to a CSV file for use in Excel, Numbers, or Google Sheets. 
+Exports the current or filtered contact list to a CSV file for use in Excel, Numbers, or Google Sheets.
 (CSV-only for now. “Interactions” exports as a count, not the details.)
 
 **Format:**
@@ -324,6 +388,10 @@ Exports the current or filtered contact list to a CSV file for use in Excel, Num
 * `export submission --profile full` → exports all columns
 * `export team.csv --profile standard` → exports in standard form
 * `export team --profile standard` → adds .csv to the file name
+
+<p align="left">
+<img src="../src/main/resources/images/exportCommandExample.png" alt="Exported contacts to mycontacts.csv" width="600"/>
+</p>
 
 ---
 
@@ -349,10 +417,15 @@ Duplicate entries (based on `Person#equals`) are skipped automatically.
 * `import ./data/exports/team_oct.csv`
 * `import /Users/me/Downloads/mesh_contacts.csv`
 
+
 **Notes**
 * If the file path is empty or the file doesn’t exist, the command fails.
 * If the CSV has no valid contacts after skipping malformed/duplicate rows, the command fails with a message indicating no valid contacts were found.
 * Header names are case-insensitive and column order doesn’t matter.
+
+<p align="left">
+<img src="../src/main/resources/images/importCommandExample.png" alt="Imported contacts from mycontacts.csv" width="600"/>
+</p>
 ---
 
 ### Viewing tag statistics : `stats`
@@ -368,13 +441,9 @@ Displays a summary of how many contacts belong to each tag in the address book.
 * If no tags exist, shows: `No tags found on any contact.`
 * Useful for understanding your contact composition (e.g., how many clients, investors, or friends you have).
 
-**Example:**
-```
-Tag stats:
-client: 4
-investor: 3
-vip: 1
-```
+<p align="left">
+<img src="../src/main/resources/images/statsCommandExample.png" alt="Stats" width="600"/>
+</p>
 
 ---
 
@@ -393,9 +462,10 @@ This command helps you prioritise which contacts to reach out to next.
 * Useful for tracking regular check-ins or follow-ups with clients.
 
 > 💡 **Tip:** Use `sortfollowup` after logging new interactions to quickly see who you’ve recently contacted. </div>
-
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** Use `sortfollowup` after logging new interactions to quickly see who you’ve recently contacted. </div>
+ 
+<p align="left">
+<img src="../src/main/resources/images/sortFollowUpCommandExample.png" alt="sortfollowup" width="600"/>
+</p>
 
 ---
 
@@ -457,7 +527,7 @@ MeshCRM data are saved automatically to the hard disk after every command that c
 
 ### Editing the data file
 
-Data are stored as a JSON file: `[JAR file location]/data/meshcrm.json`.
+Data are stored as a JSON file: `[JAR file location]/data/addressbook.json`.
 
 > ⚠️ **Warning:** If the file format becomes invalid, MeshCRM will start with an empty data file on the next run. Always back up before editing manually.
 
@@ -477,8 +547,12 @@ Some rows might be skipped if they are incomplete or repeated.
 Check that each row has a **name, phone number, email, and address**.
 
 ### ❓ How do I start fresh with new sample data?
-Delete or rename the `meshcrm.json` file in the `data` folder, then restart MeshCRM.  
+Delete or rename the `addressbook.json` file in the `data` folder, then restart MeshCRM.  
 It will automatically create a new one with sample contacts.
+
+### ❓ Contacts with the same name disallowed. What if I want to add 2 contacts with identical names?
+In the event that the user wishes to add 2 people to the contact list with the same name but are unable to, 
+they can their full names instead to distinguish between them.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -486,5 +560,7 @@ It will automatically create a new one with sample contacts.
 
 1. **Multiple screens:** The GUI may open off-screen if the app was last closed on a secondary display. Delete `preferences.json` to reset window position.
 2. **Minimized Help Window:** If minimized, re-running `help` will not open a new window. Restore the existing one manually.
+3. **Undo refreshes details panel:** Entering undo while viewing a details panel will cause the details panel to default to the empty details panel. The user will have to click on the person to review his/her details.
 
 --------------------------------------------------------------------------------------------------------------------
+
