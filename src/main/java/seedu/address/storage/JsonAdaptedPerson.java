@@ -164,13 +164,9 @@ class JsonAdaptedPerson {
         final Cadence modelCadence;
         if (cadence == null) {
             modelCadence = null;
-        }
-
-        else if (cadence <= 0) {
+        } else if (cadence <= 0) {
             throw new IllegalValueException(MESSAGE_INVALID_CADENCE);
-        }
-
-        else {
+        } else {
             modelCadence = new Cadence(cadence);
         }
 

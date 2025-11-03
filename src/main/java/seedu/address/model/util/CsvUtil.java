@@ -13,6 +13,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.interaction.Interaction;
@@ -41,6 +43,7 @@ import seedu.address.model.tag.Tag;
 public class CsvUtil {
 
     private static final Logger logger = LogsCenter.getLogger(CsvUtil.class);
+    private static final Pattern INT_FIRST = Pattern.compile("(-?\\d+)");
     private static final Set<String> ALLOWED_ROLES = Set.of(
             "Investor", "Partner", "Customer", "Lead"
     );
@@ -259,8 +262,14 @@ public class CsvUtil {
         Cadence cadence = null;
         if (!cadenceStr.isEmpty()) {
             try {
-                int days = Integer.parseInt(cadenceStr.trim());
-                cadence = new Cadence(days);
+                Matcher m = INT_FIRST.matcher(cadenceStr);
+                if (m.find()) {
+                    int days = Integer.parseInt(m.group(1));
+                    cadence = new Cadence(days);
+                } else {
+                    logger.log(Level.WARNING,
+                            "Ignoring invalid cadence (no integer found): " + cadenceStr);
+                }
             } catch (Exception ex) {
                 logger.log(Level.WARNING, "Ignoring invalid cadence (must be integer days): "
                         + cadenceStr);

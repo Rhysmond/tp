@@ -101,7 +101,7 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
 * `clear` : Deletes all contacts.
 * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+8. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -190,7 +190,7 @@ Adds a new contact to the address book. Does not allow duplicate names.
 * add n/Bryan Ong p/92223333 e/bryan.ong@xyz.com a/450 Jurong West St 42 t/vip t/referral r/Investor
 
 <p align="left">
-<img src="../src/main/resources/images/addCommandExample.png" alt="Added John Tan as a contact" width="600"/>
+<img src="images/addCommandExample.png" alt="Added John Tan as a contact" width="600"/>
 </p>
 > ⚠️ **Warning:** Duplicate names are not allowed.  
 > If a contact already exists with the same name, the command will be rejected.
@@ -215,7 +215,7 @@ Deletes the specified person from the address book.
 * `find Betsy` followed by `delete 1`
 
 <p align="left">
-<img src="../src/main/resources/images/deleteCommandExample.png" alt="Deleted Bernice Yu as a contact" width="600"/>
+<img src="images/deleteCommandExample.png" alt="Deleted Bernice Yu as a contact" width="600"/>
 </p>
 
 ---
@@ -243,7 +243,7 @@ Edits an existing contact’s details by index.
 * `edit 4 n/Alex Tan p/81234567 t/Friend t/Colleague c/14`
 
 <p align="left">
-<img src="../src/main/resources/images/editCommandExample.png" alt="Edited the first person's role to Customer and cadence to 4 days" width="600"/>
+<img src="images/editCommandExample.png" alt="Edited the first person's role to Customer and cadence to 4 days" width="600"/>
 </p>
 
 ---
@@ -272,7 +272,7 @@ Shows the full contact list.
   Displays the complete list of contacts (abbreviation).
 
 <p align="left">
-<img src="../src/main/resources/images/listCommandExample.png" alt="Displays list of contacts" width="600"/>
+<img src="images/listCommandExample.png" alt="Displays list of contacts" width="600"/>
 </p>
 
 ---
@@ -297,11 +297,11 @@ Finds persons whose names contain any of the given keyword(s).
 **Examples:**
 * `find irfan`
 <p align="left">
-<img src="../src/main/resources/images/findCommandExample1.png" alt="Result for find irfan" width="600"/>
+<img src="images/findCommandExample1.png" alt="Result for find irfan" width="600"/>
 </p>
 * `find li`
 <p align="left">
-<img src="../src/main/resources/images/findCommandExample2.png" alt="Result for find li" width="600"/>
+<img src="images/findCommandExample2.png" alt="Result for find li" width="600"/>
 </p>
 
 ---
@@ -313,7 +313,7 @@ Clears all entries from the address book.
 **Format:** `clear`
 
 <p align="left">
-<img src="../src/main/resources/images/clearCommandExample.png" alt="Clear" width="600"/>
+<img src="images/clearCommandExample.png" alt="Clear" width="600"/>
 </p>
 ---
 
@@ -357,7 +357,7 @@ Adds an interaction (call / email / meeting / note) to a person’s history.
   *(email replaces call because the last `i/` wins).*
 
 <p align="left">
-<img src="../src/main/resources/images/logCommandExample.png" alt="Logged a call with the first person" width="600"/>
+<img src="images/logCommandExample.png" alt="Logged a call with the first person" width="600"/>
 </p>
 
 ---
@@ -390,7 +390,7 @@ Exports the current or filtered contact list to a CSV file for use in Excel, Num
 * `export team --profile standard` → adds .csv to the file name
 
 <p align="left">
-<img src="../src/main/resources/images/exportCommandExample.png" alt="Exported contacts to mycontacts.csv" width="600"/>
+<img src="images/exportCommandExample.png" alt="Exported contacts to mycontacts.csv" width="600"/>
 </p>
 
 ---
@@ -424,7 +424,7 @@ Duplicate entries (based on `Person#equals`) are skipped automatically.
 * Header names are case-insensitive and column order doesn’t matter.
 
 <p align="left">
-<img src="../src/main/resources/images/importCommandExample.png" alt="Imported contacts from mycontacts.csv" width="600"/>
+<img src="images/importCommandExample.png" alt="Imported contacts from mycontacts.csv" width="600"/>
 </p>
 ---
 
@@ -442,7 +442,7 @@ Displays a summary of how many contacts belong to each tag in the address book.
 * Useful for understanding your contact composition (e.g., how many clients, investors, or friends you have).
 
 <p align="left">
-<img src="../src/main/resources/images/statsCommandExample.png" alt="Stats" width="600"/>
+<img src="images/statsCommandExample.png" alt="Stats" width="600"/>
 </p>
 
 ---
@@ -464,7 +464,7 @@ This command helps you prioritise which contacts to reach out to next.
 > 💡 **Tip:** Use `sortfollowup` after logging new interactions to quickly see who you’ve recently contacted. </div>
  
 <p align="left">
-<img src="../src/main/resources/images/sortFollowUpCommandExample.png" alt="sortfollowup" width="600"/>
+<img src="images/sortFollowUpCommandExample.png" alt="sortfollowup" width="600"/>
 </p>
 
 ---
