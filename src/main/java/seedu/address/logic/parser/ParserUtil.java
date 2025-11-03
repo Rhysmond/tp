@@ -145,7 +145,8 @@ public class ParserUtil {
     public static Role parseRole(String role) throws ParseException {
         requireNonNull(role);
         String trimmedRole = role.trim();
-        if (!Role.isValidRole(trimmedRole)) {
+        String normalizedRole = Role.normalizeRole(trimmedRole);
+        if (!Role.isValidRole(normalizedRole)) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
         return new Role(trimmedRole);

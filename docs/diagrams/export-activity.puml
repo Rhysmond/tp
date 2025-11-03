@@ -1,0 +1,30 @@
+@startuml
+skinparam defaultFontSize 14
+title Activity – Export (profile = FULL)
+
+start
+:Parse command args;
+if (Args valid?) then (yes)
+  :Get filtered person list;
+  if (List empty?) then (yes)
+    :Show "No contacts to export";
+    stop
+  else (no)
+    if (Filename provided?) then (yes)
+      :Use provided filename;
+    else (no)
+      :Generate timestamped filename;
+    endif
+    if (File exists?) then (yes)
+      :Use unique name with suffix (_1, _2, ...);
+    endif
+    :Select FULL schema\n(columns include Role, Cadence, Interactions);
+    :Write header & rows to CSV;
+    :Show success (count + path);
+    stop
+  endif
+else (no)
+  :Show usage / error message;
+  stop
+endif
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+skinparam defaultFontSize 14
+title Activity – Import
+
+start
+:Parse command args (path);
+
+if (File exists & readable?) then (yes)
+  :Open file;
+  :Detect delimiter/newlines;
+
+  if (Valid header?) then (yes)
+    while (More rows?) is (yes)
+      :Parse & validate row;
+      :Build Person object;
+      if (Duplicate?) then (yes)
+        :Skip & count duplicate;
+      else (no)
+        :Add to model;
+      endif
+    endwhile
+    :Show summary (imported N, skipped M, warnings W);
+    stop
+  else (no)
+    :Show "Invalid/insufficient header";
+    stop
+  endif
+
+else (no)
+  :Show "File not found / not readable";
+  stop
+endif
+@enduml

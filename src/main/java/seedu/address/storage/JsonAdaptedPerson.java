@@ -26,6 +26,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MESSAGE_INVALID_CADENCE = "Cadence must be a positive integer (days).";
 
     private final String name;
     private final String phone;
@@ -163,9 +164,16 @@ class JsonAdaptedPerson {
         final Cadence modelCadence;
         if (cadence == null) {
             modelCadence = null;
-        } else {
+        }
+
+        else if (cadence <= 0) {
+            throw new IllegalValueException(MESSAGE_INVALID_CADENCE);
+        }
+
+        else {
             modelCadence = new Cadence(cadence);
         }
+
         // Always construct with role; pass interactions list
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
             modelRole, modelCadence, modelInteractions);

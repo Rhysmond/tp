@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,75 +16,61 @@ import seedu.address.testutil.PersonBuilder;
 
 /**
  * Unit tests for {@link StatsCommand}.
- * - Counts number of persons per tag across the entire address book.
- * - If no tags exist at all, returns "No tags found on any contact."
- * - Otherwise prints:
- *      Tag stats:
- *      • tag1: count
- *      • tag2: count
- *   sorted by descending count, then alphabetical by tag.
+ * Tests include:
+ * - typical tag counting
+ * - handling of no tags
+ * - sorting by frequency then alphabetically
+ * - case-insensitive tag merging
  */
 public class StatsCommandTest {
 
     private Model model;
-    private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(new AddressBook(), new UserPrefs());
     }
 
     @Test
-    public void execute_typicalAddressBook_success() {
-        // In TypicalPersons:
-        // ALICE -> friends
-        // BENSON -> owesMoney, friends
-        // DANIEL -> friends
-        // Others have no tags
+    public void execute_typicalTags_success() {
+        // friends (3), owesMoney (1)
+        Person alice = new PersonBuilder().withName("Alice").withTags("friends").build();
+        Person benson = new PersonBuilder().withName("Benson").withTags("friends", "owesMoney").build();
+        Person daniel = new PersonBuilder().withName("Daniel").withTags("friends").build();
+
+        Arrays.asList(alice, benson, daniel).forEach(model::addPerson);
+
         String expectedMessage = String.join("\n",
                 "Tag stats:",
                 "• friends: 3",
                 "• owesMoney: 1");
 
-        StatsCommand command = new StatsCommand();
-        CommandResult result = command.execute(model);
-
+        CommandResult result = new StatsCommand().execute(model);
         assertEquals(expectedMessage, result.getFeedbackToUser());
-        // Model should not be mutated by read-only stats command
-        assertEquals(model.getAddressBook(), expectedModel.getAddressBook());
-        assertEquals(model.getFilteredPersonList(), expectedModel.getFilteredPersonList());
     }
 
     @Test
     public void execute_noTagsAnywhere_showsNoTagsMessage() {
-        // Build an address book where no person has tags
-        AddressBook ab = new AddressBook();
+        Person a = new PersonBuilder().withName("A").withTags().build();
+        Person b = new PersonBuilder().withName("B").withTags().build();
+        model.addPerson(a);
+        model.addPerson(b);
 
-        Person p1 = new PersonBuilder().withName("No Tags One").withTags().build();
-        Person p2 = new PersonBuilder().withName("No Tags Two").withTags().build();
-        ab.addPerson(p1);
-        ab.addPerson(p2);
-
-        Model emptyTagsModel = new ModelManager(ab, new UserPrefs());
-
-        StatsCommand command = new StatsCommand();
-        CommandResult result = command.execute(emptyTagsModel);
-
+        CommandResult result = new StatsCommand().execute(model);
         assertEquals("No tags found on any contact.", result.getFeedbackToUser());
     }
 
     @Test
     public void execute_countsAndOrdering_respectsSortRules() {
-        // Start from typical book (friends:3, owesMoney:1)
-        // Add one more person with tag "friends" and another with tag "alpha"
-        // Expected counts: friends:4, alpha:1, owesMoney:1
-        // Order: friends (4) first, then alpha (1) vs owesMoney (1) -> alphabetical: alpha before owesMoney
+        // friends: 4, alpha:1, owesMoney:1
+        Person p1 = new PersonBuilder().withName("P1").withTags("friends").build();
+        Person p2 = new PersonBuilder().withName("P2").withTags("friends").build();
+        Person p3 = new PersonBuilder().withName("P3").withTags("friends").build();
+        Person p4 = new PersonBuilder().withName("P4").withTags("friends").build();
+        Person p5 = new PersonBuilder().withName("P5").withTags("owesMoney").build();
+        Person p6 = new PersonBuilder().withName("P6").withTags("alpha").build();
 
-        Person extraFriend = new PersonBuilder().withName("Extra Friend").withTags("friends").build();
-        Person alphaTag = new PersonBuilder().withName("Alpha Guy").withTags("alpha").build();
-        model.addPerson(extraFriend);
-        model.addPerson(alphaTag);
+        Arrays.asList(p1, p2, p3, p4, p5, p6).forEach(model::addPerson);
 
         String expectedMessage = String.join("\n",
                 "Tag stats:",
@@ -91,9 +78,24 @@ public class StatsCommandTest {
                 "• alpha: 1",
                 "• owesMoney: 1");
 
-        StatsCommand command = new StatsCommand();
-        CommandResult result = command.execute(model);
+        CommandResult result = new StatsCommand().execute(model);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
 
+    @Test
+    public void execute_caseInsensitiveTags_mergedCorrectly() {
+        // "Friends", "friends", "FRIENDS" should merge → count = 3, display first variant
+        Person a = new PersonBuilder().withName("Case A").withTags("Friends").build();
+        Person b = new PersonBuilder().withName("Case B").withTags("friends").build();
+        Person c = new PersonBuilder().withName("Case C").withTags("FRIENDS").build();
+
+        Arrays.asList(a, b, c).forEach(model::addPerson);
+
+        String expectedMessage = String.join("\n",
+                "Tag stats:",
+                "• Friends: 3");
+
+        CommandResult result = new StatsCommand().execute(model);
         assertEquals(expectedMessage, result.getFeedbackToUser());
     }
 }

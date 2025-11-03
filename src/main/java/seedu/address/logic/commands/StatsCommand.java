@@ -29,9 +29,13 @@ public class StatsCommand extends Command {
         }
 
         Map<String, Integer> counts = new HashMap<>();
+        Map<String, String> displayNames = new HashMap<>();
+
         for (Person p : people) {
             for (Tag t : p.getTags()) {
-                counts.merge(t.tagName, 1, Integer::sum);
+                String normalized = t.tagName.toLowerCase();
+                displayNames.putIfAbsent(normalized, t.tagName);
+                counts.merge(normalized, 1, Integer::sum);
             }
         }
 
@@ -43,13 +47,14 @@ public class StatsCommand extends Command {
         List<Map.Entry<String, Integer>> entries = counts.entrySet().stream()
                 .sorted(Comparator.<Map.Entry<String, Integer>>comparingInt(Map.Entry::getValue)
                         .reversed()
-                        .thenComparing(Map.Entry::getKey))
+                        .thenComparing(e -> displayNames.get(e.getKey()).toLowerCase()))
                 .toList();
 
         StringJoiner sj = new StringJoiner("\n");
         sj.add("Tag stats:");
         for (Map.Entry<String, Integer> e : entries) {
-            sj.add(String.format("• %s: %d", e.getKey(), e.getValue()));
+            String display = displayNames.get(e.getKey());
+            sj.add(String.format("• %s: %d", display, e.getValue()));
         }
         return new CommandResult(sj.toString());
     }
