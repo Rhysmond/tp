@@ -201,7 +201,8 @@ Adds a new contact to the address book. Does not allow duplicate names.
 <p align="left">
 <img src="images/addCommandExample.png" alt="Added John Tan as a contact" width="600"/>
 </p>
-⚠️ **Warning:** Duplicate names are not allowed.
+
+>⚠️ **Warning:** Duplicate names are not allowed.
 If a contact already exists with the same name, the command will be rejected.
 
 > 💡 **Tip:** Use `c/7` to set regular followups weekly — perfect for staying in touch with leads or clients.
@@ -256,7 +257,8 @@ Edits an existing contact’s details by index.
 <p align="left">
 <img src="images/editCommandExample.png" alt="Edited the first person's role to Customer and cadence to 4 days" width="600"/>
 </p>
-⚠️ **Warning:** Duplicate names are not allowed.
+
+> ⚠️ **Warning:** Duplicate names are not allowed.
 Editing a contact's name which results in duplicate names will cause the command to be rejected.
 
 ---
@@ -289,22 +291,6 @@ Shows the full contact list.
 </p>
 
 ---
-
-### Keyboard navigation (contacts & interactions)
-
-Move quickly without touching the mouse:
-
-* **Contacts list**
-    * **Next contact:** <kbd>Ctrl</kbd> + <kbd>J</kbd>
-    * **Previous contact:** <kbd>Ctrl</kbd> + <kbd>K</kbd>
-
-* **Interactions list** (inside the right-side Details panel)
-    * **Next interaction:** <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd>
-    * **Previous interaction:** <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>
-
-> 💡 **Tip:** Use these together with `list`, `find`, and `log` to review a contact’s history and jump through
-interactions quickly.
-
 
 ### Locating persons by name : `find`
 
@@ -502,6 +488,23 @@ This command helps you prioritise which contacts to reach out to next.
 </p>
 
 > 💡 **Tip:** Use `sortfollowup` after logging new interactions to quickly see who you’ve recently contacted. </div>
+
+---
+
+### Keyboard navigation (contacts & interactions)
+
+Move quickly without touching the mouse:
+
+* **Contacts list**
+    * **Next contact:** <kbd>Ctrl</kbd> + <kbd>J</kbd>
+    * **Previous contact:** <kbd>Ctrl</kbd> + <kbd>K</kbd>
+
+* **Interactions list** (inside the right-side Details panel)
+    * **Next interaction:** <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd>
+    * **Previous interaction:** <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>
+
+> 💡 **Tip:** Use these together with `list`, `find`, and `log` to review a contact’s history and jump through
+interactions quickly.
 
 ---
 
