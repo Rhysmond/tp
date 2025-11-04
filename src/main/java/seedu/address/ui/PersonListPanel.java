@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionModel;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -58,6 +59,20 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public javafx.scene.control.MultipleSelectionModel<Person> getSelectionModel() {
         return personListView.getSelectionModel();
+    }
+
+    /**
+     * Moves the contact selection by {@code delta} (clamped to list bounds) and scrolls the new row into view.
+     */
+    public void moveSelection(int delta) {
+        SelectionModel<Person> sm = personListView.getSelectionModel();
+        int i = Math.max(0, sm.getSelectedIndex());
+        int n = personListView.getItems().size();
+        int j = Math.max(0, Math.min(n - 1, i + delta));
+        if (j != i) {
+            sm.select(j);
+            personListView.scrollTo(j);
+        }
     }
 
 }

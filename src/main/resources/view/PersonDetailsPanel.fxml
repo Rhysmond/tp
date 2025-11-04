@@ -44,7 +44,7 @@
     <Separator/>
 
     <Label text="Interactions"/>
-    <ListView fx:id="interactionList" prefHeight="260"/>
+    <ListView fx:id="interactionList" prefHeight="260" styleClass="interactions-list" focusTraversable="true"/>
 
     <Label fx:id="emptyHint" text="Select a contact to view details"
            visible="false" styleClass="muted"/>

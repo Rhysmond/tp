@@ -353,4 +353,4 @@
 
 .details-root { }
 .details-title { -fx-font-size: 16px; -fx-font-weight: bold; }
-.muted { -fx-text-fill: derive(-fx-text-fill, -40%); }
+.muted { -fx-text-fill: derive(#c9d1d9, -40%); }

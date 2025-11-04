@@ -57,17 +57,24 @@ public class PersonDetailsPanel extends UiPart<Region> {
     }
 
     private void setupInteractionCells() {
-        interactionList.setCellFactory(list -> new ListCell<Interaction>() {
+        interactionList.setCellFactory(lv -> new ListCell<Interaction>() {
+            final Label lbl = new Label();
+            {
+                lbl.setWrapText(true);
+                lbl.maxWidthProperty().bind(lv.widthProperty().subtract(20));
+            }
             @Override
             protected void updateItem(Interaction it, boolean empty) {
                 super.updateItem(it, empty);
                 if (empty || it == null) {
+                    setGraphic(null);
                     setText(null);
-                } else {
-                    // Interaction has getType(), getDetails(), getTimestamp()
-                    String ts = TS_FMT.format(it.getTimestamp().atZone(java.time.ZoneId.systemDefault()));
-                    setText(String.format("[%s] %s — %s", ts, it.getType(), it.getDetails()));
+                    return;
                 }
+                String ts = TS_FMT.format(it.getTimestamp().atZone(ZoneId.systemDefault()));
+                lbl.setText(String.format("[%s] %s — %s", ts, it.getType(), it.getDetails()));
+                setGraphic(lbl);
+                setText(null);
             }
         });
     }
@@ -113,6 +120,11 @@ public class PersonDetailsPanel extends UiPart<Region> {
         }
         nextFollowUp.setText(nextText);
     }
+
+    public ListView<Interaction> getInteractionListView() {
+        return interactionList;
+    }
+
 
     private void showEmpty() {
         header.setText("Contact details");

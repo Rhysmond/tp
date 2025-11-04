@@ -19,7 +19,7 @@ public class LogCommand extends Command {
     public static final String COMMAND_WORD = "log";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Log an interaction for a contact.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "i/TYPE(d/call/email/meeting/note) d/DETAILS\n"
+            + "i/TYPE(call/email/meeting/note) d/DETAILS\n"
             + "Example: " + COMMAND_WORD + " 2 i/email d/Sent the deck and pricing";
 
     public static final String MESSAGE_SUCCESS = "Added %s to %s";

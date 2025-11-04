@@ -25,6 +25,12 @@ public class LogCommandParser implements Parser<LogCommand> {
         if (preamble.isEmpty()) {
             throw new ParseException(ParserUtil.MESSAGE_MISSING_INDEX);
         }
+        String[] parts = preamble.split("\\s+", 2);
+        String idxTok = parts[0];
+        if (parts.length > 1 && !parts[1].isBlank()) {
+            throw new ParseException("Invalid parameter: " + parts[1]
+                + ". Allowed parameters are i/<type> and d/<details>.");
+        }
         boolean unsignedDigits = preamble.chars().allMatch(Character::isDigit);
         boolean signedNegative = preamble.matches("-\\d+");
         if (!(unsignedDigits || signedNegative)) {
@@ -46,6 +52,9 @@ public class LogCommandParser implements Parser<LogCommand> {
 
         if (details.trim().isEmpty()) {
             throw new ParseException("Details cannot be empty. Please provide a message after d/.");
+        }
+        if (details.length() > 500) {
+            throw new ParseException("Details too long (max 500 characters).");
         }
 
         InteractionType type;

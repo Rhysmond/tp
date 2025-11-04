@@ -127,6 +127,10 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines, as space characters surrounding line breaks may be omitted when copied over to the application.
+
+* **Character set support:** MeshCRM officially supports **ASCII characters** in inputs (names, tags, addresses, etc.).
+  Non-ASCII characters (e.g., emojis or non-Latin scripts) may not render consistently across systems and exported CSVs.
+
 </div>
 
 ---
@@ -158,8 +162,11 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
 
 Opens a new window displaying the user guide link.
 The help window includes:
-* A clickable link to the User Guide
-* A Copy URL button to copy the user guide link
+* A clickable link is also available on the top left corner of the application.
+* A Copy URL button to copy the user guide link.
+
+**Format:**
+`help`
 
 <p align="left">
 <img src="images/helpMessageNewer.png" alt="Help Message" width="600"/>
@@ -181,6 +188,8 @@ Adds a new contact to the address book. Does not allow duplicate names.
 * CADENCE accepts a positive number of days (e.g., c/7 means follow up every 7 days).
 * ROLE should be one of the following: Investor, Partner, Customer or Lead (case-insensitive).
 * NAME field with consecutive white-spaces will be reduced to 1 white-space.
+* NAME must be alphanumeric and spaces only (letters and digits with spaces; no punctuation).
+* PHONE must contain digits only and be 3–17 digits long.
 
 **Examples:**
 * add n/John Tan p/91234567 e/johntan@gmail.com a/123 Clementi Ave 3 t/client r/Investor c/14
@@ -192,10 +201,10 @@ Adds a new contact to the address book. Does not allow duplicate names.
 <p align="left">
 <img src="images/addCommandExample.png" alt="Added John Tan as a contact" width="600"/>
 </p>
-> ⚠️ **Warning:** Duplicate names are not allowed.  
-> If a contact already exists with the same name, the command will be rejected.
+⚠️ **Warning:** Duplicate names are not allowed.
+If a contact already exists with the same name, the command will be rejected.
 
-> 💡 **Tip:** Use `c/7` or `c/14` to set regular follow-ups automatically — perfect for staying in touch with leads or clients.
+> 💡 **Tip:** Use `c/7` to set regular followups weekly — perfect for staying in touch with leads or clients.
 
 ---
 
@@ -235,6 +244,8 @@ Edits an existing contact’s details by index.
 * When editing tags, existing tags will be replaced with the new ones.
 * To remove all tags, type `t/` without specifying any tags after it.
 * Tags are replaced, not appended. Use all desired tags in the same command.
+* NAME (if provided) must be alphanumeric with spaces only.
+* PHONE (if provided) must be digits only (3–17 digits).
 
 **Examples:**
 * `edit 1 p/91234567 e/johndoe@example.com`
@@ -245,6 +256,8 @@ Edits an existing contact’s details by index.
 <p align="left">
 <img src="images/editCommandExample.png" alt="Edited the first person's role to Customer and cadence to 4 days" width="600"/>
 </p>
+⚠️ **Warning:** Duplicate names are not allowed.
+Editing a contact's name which results in duplicate names will cause the command to be rejected.
 
 ---
 
@@ -261,7 +274,7 @@ Shows the full contact list.
 * The command is **recorded in command history**.
 * **Abbreviation:** `l` can also be used to perform the same action.
 * **Current behaviour:**
-  `list` is processed even if you type extra text after it, such as `list x/1` or `list 123`.
+  `list` is processed even if you type extra text after it with a whitespace separating both, such as `list x/1` or `list 123`.
   The additional text is **ignored** and the full list is still shown.
 
 **Examples:**
@@ -276,6 +289,22 @@ Shows the full contact list.
 </p>
 
 ---
+
+### Keyboard navigation (contacts & interactions)
+
+Move quickly without touching the mouse:
+
+* **Contacts list**
+    * **Next contact:** <kbd>Ctrl</kbd> + <kbd>J</kbd>
+    * **Previous contact:** <kbd>Ctrl</kbd> + <kbd>K</kbd>
+
+* **Interactions list** (inside the right-side Details panel)
+    * **Next interaction:** <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd>
+    * **Previous interaction:** <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>
+
+> 💡 **Tip:** Use these together with `list`, `find`, and `log` to review a contact’s history and jump through
+interactions quickly.
+
 
 ### Locating persons by name : `find`
 
@@ -299,6 +328,7 @@ Finds persons whose names contain any of the given keyword(s).
 <p align="left">
 <img src="images/findCommandExample1.png" alt="Result for find irfan" width="600"/>
 </p>
+
 * `find li`
 <p align="left">
 <img src="images/findCommandExample2.png" alt="Result for find li" width="600"/>
@@ -315,6 +345,7 @@ Clears all entries from the address book.
 <p align="left">
 <img src="images/clearCommandExample.png" alt="Clear" width="600"/>
 </p>
+
 ---
 
 ### Logging an interaction : `log`
@@ -342,6 +373,8 @@ Adds an interaction (call / email / meeting / note) to a person’s history.
   `log 3 i/call d/A d/Left voicemail` will store **`d/Left voicemail`** as the details.
 * The command is **saved in command history** (you can use <kbd>↑</kbd> and <kbd>↓</kbd> to navigate through successful
   commands later).
+* Editing or deleting previously logged interactions is **not yet supported**. This is a **planned enhancement**. As a
+  temporary workaround, you can use `undo` immediately after a mistaken log.
 
 **Examples:**
 
@@ -359,6 +392,8 @@ Adds an interaction (call / email / meeting / note) to a person’s history.
 <p align="left">
 <img src="images/logCommandExample.png" alt="Logged a call with the first person" width="600"/>
 </p>
+
+> 💡 **Tip:** The logged interaction will appear in the person's details panel as shown in the blue circle.
 
 ---
 
@@ -426,6 +461,7 @@ Duplicate entries (based on `Person#equals`) are skipped automatically.
 <p align="left">
 <img src="images/importCommandExample.png" alt="Imported contacts from mycontacts.csv" width="600"/>
 </p>
+
 ---
 
 ### Viewing tag statistics : `stats`
@@ -461,11 +497,11 @@ This command helps you prioritise which contacts to reach out to next.
 * Sorting affects only the displayed list — your data remains unchanged.
 * Useful for tracking regular check-ins or follow-ups with clients.
 
-> 💡 **Tip:** Use `sortfollowup` after logging new interactions to quickly see who you’ve recently contacted. </div>
- 
 <p align="left">
 <img src="images/sortFollowUpCommandExample.png" alt="sortfollowup" width="600"/>
 </p>
+
+> 💡 **Tip:** Use `sortfollowup` after logging new interactions to quickly see who you’ve recently contacted. </div>
 
 ---
 
@@ -484,6 +520,8 @@ Press <kbd>↑</kbd> and <kbd>↓</kbd> to navigate command history.
     * <kbd>↑</kbd> — previous command
     * <kbd>↓</kbd> — next command
 
+> 💡 **Tip:** Use the command history feature to quickly cycle through past commands. </div>
+
 ---
 
 ### Undoing latest command : `undo`
@@ -496,6 +534,8 @@ Undoes the most recent command made
 **Details:**
 * Undo is recorded in the command history
 * Undoing a command does not remove it from the command history
+> 💡 **Tip:** Use the undo feature to quickly undo any unintentional commands. </div>
+
 
 ---
 

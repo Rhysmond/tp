@@ -4,8 +4,11 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -134,8 +137,29 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand, commandHistory);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        var scene = getRoot().getScene();
+        scene.getAccelerators().put(new KeyCodeCombination(KeyCode.J, KeyCombination.CONTROL_DOWN), ()
+            -> personListPanel.moveSelection(+1));
+        scene.getAccelerators().put(new KeyCodeCombination(KeyCode.K, KeyCombination.CONTROL_DOWN), ()
+            -> personListPanel.moveSelection(-1));
+        scene.getAccelerators().put(
+            new KeyCodeCombination(KeyCode.J, KeyCombination.CONTROL_DOWN, KeyCombination.SHIFT_DOWN), ()
+                -> move(personDetailsPanel.getInteractionListView(), +1));
+        scene.getAccelerators().put(
+            new KeyCodeCombination(KeyCode.K, KeyCombination.CONTROL_DOWN, KeyCombination.SHIFT_DOWN), ()
+                -> move(personDetailsPanel.getInteractionListView(), -1));
     }
 
+    private static <T> void move(ListView<T> lv, int delta) {
+        var sm = lv.getSelectionModel();
+        int i = Math.max(0, sm.getSelectedIndex());
+        int n = lv.getItems().size();
+        int j = Math.max(0, Math.min(n - 1, i + delta));
+        if (j != i) {
+            sm.select(j);
+            lv.scrollTo(j);
+        }
+    }
 
     /**
      * Sets the default size based on {@code guiSettings}.
