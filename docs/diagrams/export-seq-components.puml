@@ -1,0 +1,38 @@
+@startuml
+skinparam defaultFontSize 14
+title Sequence – Export (component level)
+
+actor User
+participant Ui
+participant LogicManager as Logic
+participant AddressBookParser as Parser
+participant ExportContactListCommand as Cmd
+participant Model
+participant "CsvWriter" as Csv
+
+== trigger ==
+User -> Ui: "export my.csv --profile full"
+Ui -> Logic: execute("export my.csv --profile full")
+Logic -> Parser: parseCommand(...)
+Parser -> Cmd: new("my.csv", FULL)
+
+== execute ==
+Logic -> Cmd: execute(model)
+
+alt empty list
+  Cmd -> Model: getFilteredPersonList()
+  Model --> Cmd: []
+  Cmd --> Logic: "No contacts to export"
+  Logic --> Ui: show result
+
+else write csv
+  Cmd -> Model: getFilteredPersonList()
+  Model --> Cmd: persons
+  Cmd -> Csv: writeHeader(FULL)
+  loop each person
+    Cmd -> Csv: writeRow(person)
+  end
+  Cmd --> Logic: success(count, path)
+  Logic --> Ui: show success
+end
+@enduml

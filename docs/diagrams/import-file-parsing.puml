@@ -1,0 +1,36 @@
+@startuml
+participant "Command: ImportCommand" as IC
+participant "Util: CsvUtil" as CSV
+participant "IO: FileSystem" as FS
+collections "Persons (toAdd)" as TOADD
+
+IC -> CSV : parseContacts(filePath)
+activate CSV
+
+CSV -> FS : open(filePath)
+activate FS
+FS --> CSV : Reader
+deactivate FS
+
+CSV -> CSV : readHeader()
+alt invalid/missing header
+  CSV --> IC : ParseException("Invalid header")
+  deactivate CSV
+else valid header
+  loop for each row in file
+    CSV -> CSV : parseRow(row)
+    alt well-formed row
+      create Person
+      CSV -> Person : <<create>> new(...)
+      activate Person
+      Person --> CSV
+      deactivate Person
+      CSV -> TOADD : add(Person)
+    else malformed row
+      CSV -> CSV : log warning & skip
+    end
+  end
+  CSV --> IC : List<Person> (toAdd)
+  deactivate CSV
+end
+@enduml

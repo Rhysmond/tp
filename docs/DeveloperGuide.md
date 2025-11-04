@@ -234,6 +234,11 @@ Examples:
 
 ### CSV `export`
 ![Activity – Export](images/export-activity.png)
+<!-- Sequence diagrams split for readability -->
+![Sequence – Export (components)](images/export-seq-components.png)
+![Sequence – ExportCmd internals](images/export-seq-internals.png)
+![Sequence – Filename & collision handling](images/export-seq-filename.png)
+*UI → Logic → Parser → ExportCommand → Model → CsvUtil/FileWriter; alt paths for empty list, filename omitted, collision.*
 **Export format**: `export [filename].csv`
 
 **Command**  
@@ -268,6 +273,15 @@ Examples:
 
 ### CSV `import`
 ![Activity – Import](images/import-activity.png)
+
+**Sequence Diagrams**
+**Part 1: Command invocation & parsing**
+
+![Sequence – Import (Part 1)](images/import-command-parsing.png)
+
+**Part 2: File parsing, validation & model update**
+
+![Sequence – Import (Part 2)](images/import-file-parsing.png)
 **Command**  
 `import PATH/TO/file.csv`
 
@@ -522,7 +536,6 @@ Below are starting points for manual testing; testers should extend with explora
       **Expected**: Contacts without interactions are placed last.
 
 ### Exporting to CSV
-
 1. **Basic export**
     - Run: `export mylist.csv`
       **Expected**: `data/exports/mylist.csv` exists; columns `name,phone,email,address,tags`.

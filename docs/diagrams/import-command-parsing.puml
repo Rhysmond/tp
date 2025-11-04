@@ -1,0 +1,25 @@
+@startuml
+actor User as U
+participant "UI: MainWindow" as UI
+participant "Logic: LogicManager" as LM
+participant "Parser: AddressBookParser" as ABP
+participant "Parser: ImportCommandParser" as ICP
+participant "Command: ImportCommand" as IC
+
+U -> UI : type "import FILE_PATH"
+activate UI
+UI -> LM : execute("import FILE_PATH")
+activate LM
+LM -> ABP : parseCommand("import FILE_PATH")
+activate ABP
+ABP -> ICP : parse("FILE_PATH")
+activate ICP
+ICP -> IC ++ : new ImportCommand(filePath)
+return ImportCommand
+ABP <-- ICP : ImportCommand
+deactivate ICP
+LM <-- ABP : ImportCommand
+deactivate ABP
+LM -> IC : execute(model)
+activate IC
+@enduml

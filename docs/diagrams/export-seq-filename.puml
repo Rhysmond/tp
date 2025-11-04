@@ -1,0 +1,20 @@
+@startuml
+skinparam defaultFontSize 14
+title Sequence – ExportCmd: filename & collision handling
+
+participant ExportContactListCommand as Cmd
+participant "FileSystem" as FS
+
+alt filename provided
+  Cmd -> Cmd: chosen = "my.csv"
+else filename omitted
+  Cmd -> Cmd: chosen = timestamp("contacts_YYYY-MM-DD_HH-mm-ss.csv")
+end
+
+Cmd -> FS: exists(chosen)?
+opt exists
+  Cmd -> Cmd: chosen = addSuffix("_1", "_2", ...)
+end
+
+Cmd -> Cmd: targetPath = data/exports/chosen
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+skinparam defaultFontSize 14
+title Sequence – ExportCmd internals: write CSV
+
+participant ExportContactListCommand as Cmd
+participant Model
+participant "SchemaMap" as Schema
+participant "CsvWriter" as Csv
+
+Cmd -> Model: getFilteredPersonList()
+Model --> Cmd: persons
+
+Cmd -> Schema: select(FULL)
+Schema --> Cmd: columns
+
+Cmd -> Csv: open(targetPath)
+Cmd -> Csv: writeHeader(columns)
+loop for person in persons
+  Cmd -> Csv: writeRow(extract(person, columns))
+end
+Cmd -> Csv: close()
+Cmd -> Cmd: return count, path
+@enduml
