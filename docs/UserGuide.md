@@ -37,6 +37,7 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
     - [Importing contacts: import](#importing-contacts--import)
     - [Viewing tag statistics: stats](#viewing-tag-statistics--stats)
     - [Sorting persons by next follow-up date: sortfollowup](#sorting-persons-by-next-follow-up-date--sortfollowup)
+    - [Keyboard navigation](#keyboard-navigation)
     - [Command history](#command-history)
     - [Undoing latest command: undo](#undoing-latest-command--undo)
     - [Exiting the program: exit](#exiting-the-program--exit)
@@ -491,9 +492,9 @@ This command helps you prioritise which contacts to reach out to next.
 
 ---
 
-### Keyboard navigation (contacts & interactions)
+### Keyboard navigation
 
-Move quickly without touching the mouse:
+Move quickly between contacts and interactions without touching the mouse:
 
 * **Contacts list**
     * **Next contact:** <kbd>Ctrl</kbd> + <kbd>J</kbd>
