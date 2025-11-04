@@ -1,4 +1,7 @@
-# MeshCRM User Guide
+---
+layout: page
+title: User Guide
+---
 
 MeshCRM is made for **entrepreneurs managing customer relationships, discovery, and fundraising.**
 
@@ -20,6 +23,8 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
 > A **CLI (Command Line Interface)** means you type commands — like texting the app what you want it to do.  
 > A **GUI (Graphical User Interface)** means you can also click buttons and see everything nicely displayed on your screen.  
 > MeshCRM combines both, so you can **type fast when you want speed** and **click around when you want convenience**.
+
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 - [Quick start](#quick-start)
@@ -93,14 +98,15 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
    <p align="left">
    <img src="images/Ui.png" alt="Ui" width="600"/>
    </p>
+   
 7. Type the command in the command box (indicated by the blue circle) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-* `list` : Lists all contacts.
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/boss r/investor c/10` : Adds a contact named `John Doe`.
-* `delete 3` : Deletes the 3rd contact shown in the current list.
-* `clear` : Deletes all contacts.
-* `exit` : Exits the app.
+    * `list` : Lists all contacts.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/boss r/investor c/10` : Adds a contact named `John Doe`.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `clear` : Deletes all contacts.
+    * `exit` : Exits the app.
 
 8. Refer to the [Features](#features) below for details of each command.
 
@@ -139,23 +145,24 @@ MeshCRM helps entrepreneurs and teams turn scattered contacts into a structured,
 
 ## Command Summary
 
-| **Action** | **Format** | **Example** |
-|-------------|-------------|--------------|
-| **View Help** | `help` | — |
-| **Add Contact** | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]... r/ROLE [c/DAYS]` | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/boss r/investor c/10` |
-| **Delete Contact** | `delete INDEX` | `delete 3` |
-| **Edit Contact** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [r/ROLE] [c/DAYS]` | `edit 2 n/James Lee e/jameslee@example.com` |
-| **List All Contacts** | `list` | — |
-| **Find Contacts** | `find KEYWORD [MORE_KEYWORDS]` | `find James Jake` |
-| **Clear All Contacts** | `clear` | — |
-| **Log Interaction** | `log INDEX i/<call/email/meeting/note> d/DETAILS` | `log 1 i/meeting d/Coffee chat` |
-| **Export Contacts** | `export FILE_NAME` | `export contacts.csv` |
-| **Import Contacts** | `import FILE_PATH` | `import data/exports/team_oct.csv` |
-| **View Tag Statistics** | `stats` | — |
-| **Sort by Follow-Up Date** | `sortfollowup` | — |
-| **View Command History** | *(keyboard shortcuts)* | Press <kbd>↑</kbd> / <kbd>↓</kbd> to navigate |
-| **Undo Last Command** | `undo` | — |
-| **Exit Program** | `exit` | — |
+| **Action**                 | **Format** | **Example**                                                                                                                                                                                                                                           |
+|----------------------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **View Help**              | `help` | —                                                                                                                                                                                                                                                     |
+| **Add Contact**            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]... r/ROLE [c/DAYS]` | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/boss r/investor c/10`                                                                                                                                               |
+| **Delete Contact**         | `delete INDEX` | `delete 3`                                                                                                                                                                                                                                            |
+| **Edit Contact**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [r/ROLE] [c/DAYS]` | `edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                           |
+| **List All Contacts**      | `list` | —                                                                                                                                                                                                                                                     |
+| **Find Contacts**          | `find KEYWORD [MORE_KEYWORDS]` | `find James Jake`                                                                                                                                                                                                                                     |
+| **Clear All Contacts**     | `clear` | —                                                                                                                                                                                                                                                     |
+| **Log Interaction**        | `log INDEX i/<call/email/meeting/note> d/DETAILS` | `log 1 i/meeting d/Coffee chat`                                                                                                                                                                                                                       |
+| **Export Contacts**        | `export FILE_NAME` | `export contacts.csv`                                                                                                                                                                                                                                 |
+| **Import Contacts**        | `import FILE_PATH` | `import data/exports/team_oct.csv`                                                                                                                                                                                                                    |
+| **View Tag Statistics**    | `stats` | —                                                                                                                                                                                                                                                     |
+| **Sort by Follow-Up Date** | `sortfollowup` | —                                                                                                                                                                                                                                                     |
+| **Keyboard Navigation**    | *(keyboard shortcuts)* | Press <kbd>Ctrl</kbd> + <kbd>J</kbd> / <kbd>Ctrl</kbd> + <kbd>K</kbd> to navigate between contacts, <br/>Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd> / <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> to navigate between interactions |
+| **View Command History**   | *(keyboard shortcuts)* | Press <kbd>↑</kbd> / <kbd>↓</kbd> to navigate between commands                                                                                                                                                                                        |
+| **Undo Last Command**      | `undo` | —                                                                                                                                                                                                                                                     |
+| **Exit Program**           | `exit` | —                                                                                                                                                                                                                                                     |
 
 ---
 
@@ -496,6 +503,9 @@ This command helps you prioritise which contacts to reach out to next.
 
 Move quickly between contacts and interactions without touching the mouse:
 
+**Format:** As listed in details.
+
+**Details:**
 * **Contacts list**
     * **Next contact:** <kbd>Ctrl</kbd> + <kbd>J</kbd>
     * **Previous contact:** <kbd>Ctrl</kbd> + <kbd>K</kbd>
@@ -538,6 +548,7 @@ Undoes the most recent command made
 **Details:**
 * Undo is recorded in the command history
 * Undoing a command does not remove it from the command history
+  
 > 💡 **Tip:** Use the undo feature to quickly undo any unintentional commands. </div>
 
 

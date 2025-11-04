@@ -5,7 +5,7 @@
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+        -fx-background: #383838;
 }
 
 .tag-selector {
@@ -19,8 +19,10 @@
     -fx-text-fill: white;
 }
 
-.interactions-list { -fx-background-color: #1a1f24; -fx-control-inner-background: #1a1f24; }
+.interactions-list { -fx-background-color: #383838; -fx-control-inner-background: #383838; }
 .interactions-list .list-cell { -fx-text-fill: #e6edf3; }
 .interactions-list .list-cell:filled:hover { -fx-background-color: #2a2f36; }
 .interactions-list .list-cell:filled:selected,
 .interactions-list:focused .list-cell:filled:selected { -fx-background-color: #2f81f7; -fx-text-fill: white; }
+
+
